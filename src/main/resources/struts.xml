@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.custom.i18n.resources" value="message" />
+	<constant name="struts.convention.package.locators" value="action" />
+	<constant name="struts.convention.package.locators.basePackage"
+		value="cn.sp.ofs.excel.action" />
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.multipart.saveDir" value="upload"></constant>
+	<constant name="struts.multipart.maxSize" value="1024102400"></constant>
+	<constant name="struts.objectFactory.spring.autoWire.alwaysRespect"
+		value="true" />
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.action.extension" value="action,htm" />
+
+
+	<!-- 使用Convention插件,实现约定大于配置的零配置文件风格. 特殊的Result路径在Action类中使用@Result设定. -->
+</struts>
