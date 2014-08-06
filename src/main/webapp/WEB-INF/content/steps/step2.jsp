@@ -2,7 +2,8 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%
 	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
@@ -42,13 +43,27 @@
 				</ul>
 				<div id="myTabContent" class="tab-content">
 					<div class="tab-pane fade active in" id="graphics">
-						<p>Raw denim you probably haven't heard of them jean shorts
-							Austin. Nesciunt tofu stumptown aliqua, retro synth master
-							cleanse. Mustache cliche tempor, williamsburg carles vegan
-							helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
-							synth. Cosby sweater eu banh mi, qui irure terry richardson ex
-							squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis
-							cardigan american apparel, butcher voluptate nisi qui.</p>
+						<form role="form" action="<%=basePath%>steps/step3.action"
+							method="post" enctype="multipart/form-data">
+							<label for="url">选择表格:</label>
+								<div> excel1 </div>
+								<div class="checkbox">
+									<label> <input type="checkbox" value="">sheet01</label>
+								</div>
+								<div class="checkbox">
+									<label> <input type="checkbox" value="">sheet02</label>
+								</div>
+								
+								 <br />
+								<div> excel2 </div>
+								<div class="checkbox">
+									<label> <input type="checkbox" value="">sheet01</label>
+								</div> <br />
+								
+								
+								 <input class="btn btn-lg btn-primary "
+								value="下一步" type="submit" />
+						</form>
 					</div>
 					<div class="tab-pane fade" id="simple">
 						<p>Food truck fixie locavore, accusamus mcsweeney's marfa
@@ -73,10 +88,10 @@
 </body>
 </html>
 <script type="text/javascript">
-$(function(){
-	$('#myTab a').click(function (e) {
-		  e.preventDefault();
-		  $(this).tab('show');
+	$(function() {
+		$('#myTab a').click(function(e) {
+			e.preventDefault();
+			$(this).tab('show');
 		});
-});
+	});
 </script>
