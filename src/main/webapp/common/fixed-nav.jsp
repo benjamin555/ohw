@@ -1,5 +1,4 @@
 <%@ page language="java"  pageEncoding="UTF-8"%>
-<link href="<%=basePath%>css/navbar-fixed-top.css" rel="stylesheet">
 <div class="navbar navbar-default navbar-fixed-top " role="navigation">
 	<div class="container">
 		<ul class="nav navbar-nav " >

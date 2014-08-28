@@ -27,9 +27,11 @@
 <script src="<%=basePath%>js/jquery.tmpl.min.js"></script>
 </head>
 <body>
-	<%@include file="/common/fixed-nav.jsp"%>
+	
 	<div class="container">
+	
 		<div class="jumbotron">
+		<%@include file="/common/fixed-nav.jsp"%>
 			<form role="form" action="<%=basePath%>ofshelp.action" method="post"
 				enctype="multipart/form-data">
 				<label for="url">SQL:</label>
