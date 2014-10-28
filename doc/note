@@ -1,0 +1,10 @@
+####杰少
+select  t1.*,t2.*,t3.* from t1 join t2 on t2.c1=t1.c20 join t3 on t3.c1 = REPLACE(t1.c22,'No:','')
+
+##成本，运费，利润汇总
+select  sum(cast(t2.c2 as double) * cast(t1.c25 as double)) as "成本",sum(cast(t3.c2 as double)) as "运费",sum(t1.c9-(cast(t2.c2 as double) * cast(t1.c25 as double))-t3.c2) as "利润" from t1 join t2 on t2.c1=t1.c20 join t3 on t3.c1 = REPLACE(t1.c22,'No:','')
+
+##单项成本，运费，利润
+select  t1.c1 as "单项",(cast(t2.c2 as double) * cast(t1.c25 as double)) as "成本",t3.c2 as "运费",t1.c9-(cast(t2.c2 as double) * cast(t1.c25 as double))-t3.c2 as "利润" from t1 join t2 on t2.c1=t1.c20 join t3 on t3.c1 = REPLACE(t1.c22,'No:','')
+
+
