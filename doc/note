@@ -2,9 +2,17 @@
 select  t1.*,t2.*,t3.* from t1 join t2 on t2.c1=t1.c20 join t3 on t3.c1 = REPLACE(t1.c22,'No:','')
 
 ##成本，运费，利润汇总
-select  sum(cast(t2.c2 as double) * cast(t1.c25 as double)) as "成本",sum(cast(t3.c2 as double)) as "运费",sum(t1.c9-(cast(t2.c2 as double) * cast(t1.c25 as double))-t3.c2) as "利润" from t1 join t2 on t2.c1=t1.c20 join t3 on t3.c1 = REPLACE(t1.c22,'No:','')
+select  sum(cast(t2.c2 as double) * cast(t1.c25 as double)) as "成本",sum(cast(t3.c2 as double)) as "运费",sum(t1.c9-(cast(t2.c2 as double) * cast(t1.c25 as double))-t3.c2) as "利润" 
+,(select sum(cast(ta.c9 as double )) as "返现" from t1 ta where ta.c24 like '%好评返现%'  ) as "返现"
+from t1 left join t2 on t2.c1=t1.c20 left join t3 on t3.c1 = REPLACE(t1.c22,'No:','')
+where t1.c24 not like '%好评返现%' and t1.c11 <> '交易关闭'
 
 ##单项成本，运费，利润
-select  t1.c1 as "单项",(cast(t2.c2 as double) * cast(t1.c25 as double)) as "成本",t3.c2 as "运费",t1.c9-(cast(t2.c2 as double) * cast(t1.c25 as double))-t3.c2 as "利润" from t1 join t2 on t2.c1=t1.c20 join t3 on t3.c1 = REPLACE(t1.c22,'No:','')
+select  t1.c1 as "单项",(cast(t2.c2 as double) * cast(t1.c25 as double)) as "成本",t3.c2 as "运费",t1.c9-(cast(t2.c2 as double) * cast(t1.c25 as double))-t3.c2 as "利润" from t1 left join t2 on t2.c1=t1.c20 left join t3 on t3.c1 = REPLACE(t1.c22,'No:','')
 
-
+##拼接
+select t1.c1,t1.c7 from t1
+union all
+select t2.c1,t2.c7 from t2
+union all
+select t3.c1,t3.c7 from t3
