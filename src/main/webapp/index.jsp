@@ -28,9 +28,10 @@
 </head>
 <body>
 	<%@include file="/common/fixed-nav.jsp"%>
+	<input type="hidden" value="<%=basePath%>" id="basePath" />
 	<div class="container">
 		<div class="jumbotron">
-			<form role="form" action="<%=basePath%>ofshelp.action" method="post"
+			<form id="eForm" role="form" action="<%=basePath%>ofshelp.action" method="post"
 				enctype="multipart/form-data">
 				<label for="url">查询语句:</label>
 				<textarea class="form-control" rows="8" name="sql" autofocus
@@ -41,12 +42,26 @@
 				</span> <br /> <label for="url">sheet跳过行数:</label> <input
 					class="form-control" name="skipRowStr" placeholder="用逗号分隔" required
 					value="1,1,1" /> <br />
-				<input class="btn btn-lg btn-primary " value="提交" type="submit" />
+				<input class="btn btn-lg btn-primary " value="提交" type="button" id="submitBtn"  />
+				<input class="btn btn-lg btn-primary " value="保存查询" type="button" id="saveBtn" />
 			</form>
 		</div>
 	</div>
 </body>
 </html>
 <script type="text/javascript">
+$(function(){
+	var basePath = $("#basePath").val();
+	
+	$("#saveBtn").click(function(){
+		$("#eForm").attr("action",basePath+"qstatement!save.action");
+		$("#eForm").submit();
+		
+	});
+	$("#submitBtn").click(function(){
+		$("#eForm").attr("action",basePath+"ofshelp.action");
+		$("#eForm").submit();
+	});
+});
 
 </script>

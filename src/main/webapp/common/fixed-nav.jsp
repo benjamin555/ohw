@@ -5,11 +5,16 @@
             <li ><a href="<%=basePath%>">主页</a></li>
             <li ><a href="<%=basePath%>ofshelp!demo.action">例子</a></li>
           </ul>
-	
+		<ul class="nav navbar-nav ">
+			<li ><a href="<%=basePath%>qstatement!list.action">查询列表</a>
+			</li>
+		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<li ><a href="<%=basePath%>ofshelp!demo.action">例子</a>
 			</li>
 		</ul>
+		
+		
 	</div>
 </div>
 <script type="text/javascript">
