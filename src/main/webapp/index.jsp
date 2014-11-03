@@ -39,7 +39,7 @@
 				<br /> <span class="btn btn-success fileinput-button"> <i
 					class="icon-plus icon-white"></i> <span>请选择excel,可直接多选</span> <input
 					id="fileupload" type="file" name="dataExcels" multiple required>
-				</span> <br /> <label for="url">sheet跳过行数:</label> <input
+				</span> <br /> <label for="url">跳过标题行数:</label> <input
 					class="form-control" name="skipRowStr" placeholder="用逗号分隔" required
 					value="1,1,1" /> <br />
 				<input class="btn btn-lg btn-primary " value="提交" type="button" id="submitBtn"  />

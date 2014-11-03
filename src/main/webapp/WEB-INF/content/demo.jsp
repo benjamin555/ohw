@@ -40,7 +40,7 @@
 					<p>
 						准备两个excel，他们分别为<a href="<%=basePath%>xls/d1.xlsx">d1.xlsx</a>和<a
 							href="<%=basePath%>xls/d2.xlsx">d2.xlsx</a>。其中d1中有两个sheet，d2中只有一个sheet。
-							<strong>建议使用的excel的标题行为1</strong>。如果某个sheet的标题行不为1，可以使用“<a href="<%=basePath%>ofshelp!demo.action#skip">跳个标题行</a>”进行设置。它们的数据分别如下所示：
+							<strong>建议使用的excel的标题行为1</strong>。如果某个sheet的标题行不为1，可以使用“<a href="<%=basePath%>ofshelp!demo.action#skip">跳过标题行</a>”进行设置。它们的数据分别如下所示：
 					</p>
 					<div class="demoImg">
 						<img src="<%=basePath%>image/demo01.png" class="img-rounded">
@@ -76,7 +76,7 @@
 					
 					<p id="upload" style="height: 40px;"></p>
 					<h1  >选择上传文件</h1>
-					<p>点击“选择文件”按钮，选择要上传的excel。注意选择顺序，先选d1，再选d2。</p>
+					<p>点击“选择文件”按钮，选择要上传的excel。注意文件的命名规则，建议在原有文件名前加入数字，即“1d1”和“2d2”，系统会根据文件名前的数字进行排序，以匹配查询语句中的表。</p>
 					<div class="demoImg">
 						<img src="<%=basePath%>image/demo05.png" class="img-rounded">
 					</div>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:s="http://www.springframework.org/schema/security" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd"
+	default-lazy-init="true">
+
+	<description>SpringSecurity安全配置</description>
+	
+	<s:http pattern="/**/*.jpg" security="none"/>              
+	<s:http pattern="/**/*.png" security="none"/>              
+	<s:http pattern="/**/*.gif" security="none"/> 
+	<s:http pattern="/**/*.ico" security="none"/>              
+	<s:http pattern="/**/*.css" security="none"/> 
+	<s:http pattern="/**/*.js" security="none"/>    
+	<s:http pattern="/login.jsp" security="none"/> 
+	<s:http pattern="/index.jsp" security="none"/>    
+	
+	<!-- 开启默认的拦截器 -->
+	<s:http auto-config='true'>
+		<s:form-login login-page="/login.jsp" default-target-url="/index.jsp" authentication-failure-url="/login.jsp?error=true"/> 
+		<!-- 允许访问的uri -->
+		<s:intercept-url pattern="/**" access="ROLE_USER" />
+	</s:http>
+
+	<!-- 权限管理者 -->
+	<s:authentication-manager>
+		<!-- 权限提供者 -->
+		<s:authentication-provider>
+			<!-- 可提供登陆访问的用户 -->
+			<s:user-service>
+				<s:user name="haha" password="haha" authorities="ROLE_USER, ROLE_ADMIN" />
+				<s:user name="xixi" password="xixi" authorities="ROLE_USER" />
+			</s:user-service>
+		</s:authentication-provider>
+	</s:authentication-manager>
+</beans>
