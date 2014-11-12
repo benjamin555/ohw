@@ -6,32 +6,69 @@
 	default-lazy-init="true">
 
 	<description>SpringSecurity安全配置</description>
-	
-	<s:http pattern="/**/*.jpg" security="none"/>              
-	<s:http pattern="/**/*.png" security="none"/>              
-	<s:http pattern="/**/*.gif" security="none"/> 
-	<s:http pattern="/**/*.ico" security="none"/>              
-	<s:http pattern="/**/*.css" security="none"/> 
-	<s:http pattern="/**/*.js" security="none"/>    
-	<s:http pattern="/login.jsp" security="none"/> 
-	<s:http pattern="/index.jsp" security="none"/>    
-	
+	<s:global-method-security
+		pre-post-annotations="enabled" />
+	<s:http pattern="/**/*.jpg" security="none" />
+	<s:http pattern="/**/*.png" security="none" />
+	<s:http pattern="/**/*.gif" security="none" />
+	<s:http pattern="/**/*.ico" security="none" />
+	<s:http pattern="/**/*.css" security="none" />
+	<s:http pattern="/**/*.js" security="none" />
+	<s:http pattern="/login.jsp" security="none" />
+	<s:http pattern="/index.jsp" security="none" />
+
 	<!-- 开启默认的拦截器 -->
-	<s:http auto-config='true'>
-		<s:form-login login-page="/login.jsp" default-target-url="/index.jsp" authentication-failure-url="/login.jsp?error=true"/> 
-		<!-- 允许访问的uri -->
-		<s:intercept-url pattern="/**" access="ROLE_USER" />
+	<s:http auto-config='true' use-expressions="true"
+		entry-point-ref="authenticationProcessingFilterEntryPoint">
+		<s:form-login login-page="/login.jsp" default-target-url="/index.jsp"
+			authentication-failure-url="/login.jsp?error=true" />
+		<s:logout />
+		<!-- 实现免登陆验证 -->
+		<s:remember-me />
+		<s:session-management invalid-session-url="/timeout.jsp">
+			<s:concurrency-control max-sessions="10"
+				error-if-maximum-exceeded="true" />
+		</s:session-management>
+		<s:custom-filter ref="securityInterceptorExtend"
+			before="FILTER_SECURITY_INTERCEPTOR" />
 	</s:http>
 
+
+<!-- 认证过滤器 -->
+	<bean id="securityInterceptorExtend" class="cn.sp.ofs.security.SecurityInterceptorExtend">
+		 <!-- 用户拥有的权限 --> 
+		<property name="authenticationManager" ref="tokenAuthenticationManager" />
+		 <!-- 用户是否拥有所请求资源的权限 -->
+		<property name="accessDecisionManager" ref="accessManagerExtend" />
+		<!-- 资源与权限对应关系 -->  
+		<property name="securityMetadataSource" ref="metadataSourceExtend" />
+	</bean>
+
+
 	<!-- 权限管理者 -->
-	<s:authentication-manager>
+	<s:authentication-manager alias="tokenAuthenticationManager">
 		<!-- 权限提供者 -->
-		<s:authentication-provider>
-			<!-- 可提供登陆访问的用户 -->
-			<s:user-service>
-				<s:user name="haha" password="haha" authorities="ROLE_USER, ROLE_ADMIN" />
-				<s:user name="xixi" password="xixi" authorities="ROLE_USER" />
-			</s:user-service>
+		<s:authentication-provider user-service-ref="userDetailsService">
+			<s:password-encoder hash="md5">
+				<s:salt-source user-property="username" />
+			</s:password-encoder>
 		</s:authentication-provider>
 	</s:authentication-manager>
+
+	<!-- 项目实现的用户查询服务 -->
+	<bean id="userDetailsService" class="cn.sp.ofs.security.UserDetailsServiceImpl" />
+
+	<bean id="accessManagerExtend" class="cn.sp.ofs.security.AccessManagerExtend">
+	</bean>
+
+	<bean id="metadataSourceExtend" class="cn.sp.ofs.security.MetadataSourceExtend"
+		init-method="init">
+	</bean>
+
+
+	<!-- 未登录的切入点 -->
+	<bean id="authenticationProcessingFilterEntryPoint"
+		class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+		<property name="loginFormUrl" value="/login.jsp"></property>
+	</bean>
 </beans>

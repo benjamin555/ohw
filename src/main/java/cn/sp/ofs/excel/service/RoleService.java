@@ -2,12 +2,13 @@ package cn.sp.ofs.excel.service;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import cn.sp.ofs.excel.dao.UserDao;
-import cn.sp.ofs.excel.entity.User;
+import cn.sp.ofs.excel.dao.RoleDao;
+import cn.sp.ofs.excel.entity.Role;
 import cn.sp.service.IBaseService;
 
 /**
@@ -17,22 +18,22 @@ import cn.sp.service.IBaseService;
 */
 @Transactional
 @Service
-public class UserService  implements IBaseService<User,Long> {
+public class RoleService  implements IBaseService<Role,Long> {
 	@Autowired
-	private UserDao dao;
+	private RoleDao dao;
 
 	@Override
-	public User getById(Long id) {
-		return null;
+	public Role getById(Long id) {
+		return dao.getById(id);
 	}
 
 	@Override
-	public void save(User entityObject) {
+	public void save(Role entityObject) {
 		dao.save(entityObject);
 	}
 
 	@Override
-	public void delete(User entityObject) {
+	public void delete(Role entityObject) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -44,14 +45,14 @@ public class UserService  implements IBaseService<User,Long> {
 	}
 
 	@Override
-	public List<User> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Role> getAll() {
+		List<Role> all = dao.getAll();
+		for (Role role : all) {
+			Hibernate.initialize(role.getResources());
+		}
+		return all;
 	}
 
-	public User getByUsername(String username) {
-		return dao.findUniqueBy("userName", username);
-	}
 
 
 }

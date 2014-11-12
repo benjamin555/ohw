@@ -65,6 +65,9 @@ public class Qstatement extends BaseEntity<Long> {
 	
 	@Transient
 	public String getContent2String() {
+		if (getContent()==null) {
+			return "";
+		}
 		return getClob(getContent());
 	}
 

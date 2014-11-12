@@ -8,13 +8,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import cn.sp.ofs.excel.dao.UserDao;
+
 public class SignedUsernameTimeAuthenticationFilter extends
 		UsernamePasswordAuthenticationFilter {
-	private static final String SSOTOKEN = "SSOTOKEN";
+	private UserDao userDao ;
 
-
-	protected SignedUsernameTimeAuthenticationFilter() {
-	}
 
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request,
@@ -24,5 +23,15 @@ public class SignedUsernameTimeAuthenticationFilter extends
 				request.getParameter(SPRING_SECURITY_FORM_PASSWORD_KEY));
 		return this.getAuthenticationManager().authenticate(authRequest);
 	}
+
+	public UserDao getUserDao() {
+		return userDao;
+	}
+
+	public void setUserDao(UserDao userDao) {
+		this.userDao = userDao;
+	}
+	
+	
 
 }

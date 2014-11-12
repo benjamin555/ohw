@@ -3,6 +3,8 @@ package cn.sp.ofs.security;
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.ConfigAttribute;
@@ -12,8 +14,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
 public class AccessManagerExtend implements AccessDecisionManager {
-
+	private Logger log = LoggerFactory.getLogger(getClass());
 	public void decide(Authentication authentication, Object object, Collection<ConfigAttribute> configAttributes) throws AccessDeniedException, InsufficientAuthenticationException {
+		log.debug("decide");
 		if ((configAttributes != null) && (!configAttributes.isEmpty())) {
 			boolean _hasAuthorization = false;
 			Iterator<ConfigAttribute> ite = configAttributes.iterator();
