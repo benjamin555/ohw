@@ -26,7 +26,6 @@ import org.springframework.transaction.annotation.Transactional;
 import cn.sp.ofs.excel.entity.Resource;
 import cn.sp.ofs.excel.entity.Role;
 import cn.sp.ofs.excel.service.RoleService;
-import cn.sp.ofs.excel.service.UserService;
 
 @Transactional
 public class MetadataSourceExtend implements FilterInvocationSecurityMetadataSource {
@@ -34,8 +33,6 @@ public class MetadataSourceExtend implements FilterInvocationSecurityMetadataSou
 	private Logger log = LoggerFactory.getLogger(getClass());
 
 	private static Map<String, Collection<ConfigAttribute>> resourceMap = null;
-	@Autowired
-	private UserService userService = null;
 	@Autowired
 	private RoleService roleService;
 
@@ -80,9 +77,6 @@ public class MetadataSourceExtend implements FilterInvocationSecurityMetadataSou
 		return _urlSet;
 	}
 
-	public MetadataSourceExtend(UserService userService) {
-		this.userService = userService;
-	}
 
 	public Collection<ConfigAttribute> getAllConfigAttributes() {
 		return null;
@@ -97,7 +91,9 @@ public class MetadataSourceExtend implements FilterInvocationSecurityMetadataSou
 			String urlPattern = ite.next();
 			RequestMatcher urlMatcher = new AntPathRequestMatcher(urlPattern);
 			if (urlMatcher.matches(request)) {
-				return resourceMap.get(urlPattern);
+				Collection<ConfigAttribute> auths = resourceMap.get(urlPattern);
+				log.debug("need auths:{}",auths);
+				return auths;
 			}
 		}
 		return Collections.emptyList();

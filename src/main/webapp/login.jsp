@@ -32,12 +32,12 @@ if(obj!=null){
 		<span style="color:red"><%=msg %></span>
 	</div>
 	<div class="container">
-		<form class="form-signin" action="j_spring_security_check"
+		<form class="form-signin" action="login"
 			method="post">
 			<label for="userName">帐号：</label><input class="form-control"
-				name="j_username" placeholder="帐号" required autofocus /><label
+				name="userName" placeholder="帐号" required autofocus /><label
 				for="password">密码:</label> <input class="form-control"
-				name="j_password" type="password" placeholder=" 密码" required /><br />
+				name="password" type="password" placeholder=" 密码" required /><br />
 			<input class="btn btn-lg btn-primary btn-block" value="提交"
 				type="submit" />
 		</form>

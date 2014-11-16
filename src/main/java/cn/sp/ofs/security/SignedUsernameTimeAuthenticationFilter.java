@@ -9,7 +9,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import cn.sp.ofs.excel.dao.UserDao;
-
+ 
 public class SignedUsernameTimeAuthenticationFilter extends
 		UsernamePasswordAuthenticationFilter {
 	private UserDao userDao ;

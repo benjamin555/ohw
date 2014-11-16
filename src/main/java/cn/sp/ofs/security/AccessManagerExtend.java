@@ -28,6 +28,7 @@ public class AccessManagerExtend implements AccessDecisionManager {
 					// 添加URL的数据权限判断加载这里
 					if (needRole.equals(ga.getAuthority())) {
 						_hasAuthorization = true;
+						break;
 					}
 				}
 			}

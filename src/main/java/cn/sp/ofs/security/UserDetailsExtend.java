@@ -1,83 +1,78 @@
 package cn.sp.ofs.security;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.commons.beanutils.BeanUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-@SuppressWarnings("serial")
-public class UserDetailsExtend implements UserDetails {
+import cn.sp.ofs.excel.entity.Role;
+import cn.sp.ofs.excel.entity.User;
 
-	private String password;
-	private String username;
+@SuppressWarnings("serial")
+public class UserDetailsExtend extends User implements UserDetails {
+	private Logger logger = LoggerFactory.getLogger(getClass());
 	private Set<GrantedAuthority> authorities;
-	private boolean accountNonExpired;
-	private boolean accountNonLocked;
-	private boolean credentialsNonExpired;
-	private boolean enabled;
+
+	public UserDetailsExtend(User u) {
+		try {
+			BeanUtils.copyProperties(this, u);
+		} catch (Exception e) {
+			logger.error("error.",e);
+		} 
+	}
 
 	@Override
 	public Collection<GrantedAuthority> getAuthorities() {
+		if (authorities==null) {
+			 authorities = new HashSet<GrantedAuthority>();
+			Set<Role> rs = getRoles();
+			for (Role role : rs) {
+				GrantedAuthority g = new SimpleGrantedAuthority(role.getId() + "");
+				authorities.add(g);
+			}
+		}
 		return authorities;
 	}
 
 	@Override
 	public String getPassword() {
-		return password;
+		return super.getPassword();
 	}
 
 	@Override
 	public String getUsername() {
-		return username;
+		return super.getUserName();
 	}
 
 	@Override
 	public boolean isAccountNonExpired() {
-		return accountNonExpired;
+		return true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		return accountNonLocked;
+		return true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		return credentialsNonExpired;
+		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		return enabled;
+		return true;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
 
 	public void setAuthorities(Set<GrantedAuthority> authorities) {
 		this.authorities = authorities;
-	}
-
-	public void setAccountNonExpired(boolean accountNonExpired) {
-		this.accountNonExpired = accountNonExpired;
-	}
-
-	public void setAccountNonLocked(boolean accountNonLocked) {
-		this.accountNonLocked = accountNonLocked;
-	}
-
-	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
-		this.credentialsNonExpired = credentialsNonExpired;
-	}
-
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
 	}
 
 }

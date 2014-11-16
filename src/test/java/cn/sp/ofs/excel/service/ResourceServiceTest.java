@@ -28,12 +28,11 @@ public class ResourceServiceTest extends BaseTest{
 	@Test
 	public void testResouceAssign() throws Exception {
 		Resource entityObject = new Resource();
-		entityObject.setName("语句-列表");
-		entityObject.setUrl("/qstatement!list.action");
+		entityObject.setName("全部功能");
+		entityObject.setUrl("/**");
 		resourceService.save(entityObject );
 		
-		Role r = new Role();
-		r.setName("系统管理员");
+		Role r = roleService.getById(1l);
 		List<Resource> resources = new ArrayList<Resource>();
 		resources.add(entityObject);
 		r.setResources(resources );
