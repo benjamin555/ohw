@@ -1,4 +1,4 @@
-package cn.sp.ofs.excel.service;
+package cn.sp.ofs.security.service;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import cn.sp.ofs.excel.dao.UserDao;
-import cn.sp.ofs.excel.entity.User;
+import cn.sp.ofs.security.dao.ResourceDao;
+import cn.sp.ofs.security.entity.Resource;
 import cn.sp.service.IBaseService;
 
 /**
@@ -17,22 +17,23 @@ import cn.sp.service.IBaseService;
 */
 @Transactional
 @Service
-public class UserService  implements IBaseService<User,Long> {
+public class ResourceService  implements IBaseService<Resource,Long> {
 	@Autowired
-	private UserDao dao;
+	private ResourceDao dao;
 
 	@Override
-	public User getById(Long id) {
+	public Resource getById(Long id) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void save(User entityObject) {
+	public void save(Resource entityObject) {
 		dao.save(entityObject);
 	}
 
 	@Override
-	public void delete(User entityObject) {
+	public void delete(Resource entityObject) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -44,14 +45,12 @@ public class UserService  implements IBaseService<User,Long> {
 	}
 
 	@Override
-	public List<User> getAll() {
+	public List<Resource> getAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public User getByUsername(String username) {
-		return dao.findUniqueBy("userName", username);
-	}
+
 
 
 }

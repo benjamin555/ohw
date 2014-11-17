@@ -63,7 +63,7 @@
 		</property>
 		<property name="packagesToScan">
 			<list>
-				<value>cn.sp.ofs.excel.entity</value>
+				<value>cn.sp.ofs.*.entity</value>
 			</list>
 		</property>
 	</bean>

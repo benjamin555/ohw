@@ -10,8 +10,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import cn.sp.ofs.excel.entity.Role;
-import cn.sp.ofs.excel.entity.User;
+import cn.sp.ofs.security.entity.Role;
+import cn.sp.ofs.security.entity.User;
 
 public class SpringSecurityUserContext implements UserContext {
 	/**

@@ -1,4 +1,4 @@
-package cn.sp.ofs.excel.service;
+package cn.sp.ofs.security.service;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import cn.sp.ofs.excel.dao.RoleDao;
-import cn.sp.ofs.excel.entity.Role;
+import cn.sp.ofs.security.dao.RoleDao;
+import cn.sp.ofs.security.entity.Role;
 import cn.sp.service.IBaseService;
 
 /**
@@ -34,14 +34,12 @@ public class RoleService  implements IBaseService<Role,Long> {
 
 	@Override
 	public void delete(Role entityObject) {
-		// TODO Auto-generated method stub
-		
+		dao.delete(entityObject);
 	}
 
 	@Override
 	public void deleteById(Long id) {
-		// TODO Auto-generated method stub
-		
+		dao.delete(id);
 	}
 
 	@Override

@@ -11,8 +11,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import cn.sp.ofs.excel.entity.Role;
-import cn.sp.ofs.excel.entity.User;
+import cn.sp.ofs.security.entity.Role;
+import cn.sp.ofs.security.entity.User;
 
 @SuppressWarnings("serial")
 public class UserDetailsExtend extends User implements UserDetails {

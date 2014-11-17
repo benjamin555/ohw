@@ -1,8 +1,8 @@
-package cn.sp.ofs.excel.dao;
+package cn.sp.ofs.security.dao;
 
 import org.springframework.stereotype.Repository;
 
-import cn.sp.ofs.excel.entity.Role;
+import cn.sp.ofs.security.entity.User;
 import cn.sp.persistent.BaseEntityDao;
 
 /**
@@ -11,6 +11,6 @@ import cn.sp.persistent.BaseEntityDao;
 * @email benjaminchen555@gmail.com
 */
 @Repository
-public class RoleDao extends BaseEntityDao<Role, Long> {
+public class UserDao extends BaseEntityDao<User, Long> {
 
 }

@@ -1,4 +1,4 @@
-package cn.sp.ofs.excel.service;
+package cn.sp.ofs.security.service;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,8 +6,8 @@ import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
-import cn.sp.ofs.excel.entity.Role;
-import cn.sp.ofs.excel.entity.User;
+import cn.sp.ofs.security.entity.Role;
+import cn.sp.ofs.security.entity.User;
 import cn.sp.test.BaseTest;
 
 /**
@@ -28,8 +28,8 @@ public class UserServiceTest extends BaseTest{
 	@Test
 	public void testSave() throws Exception {
 		User entityObject = new User();
-		entityObject.setUserName("haha");
-		entityObject.setPassword("haha");
+		entityObject.setUserName("user1");
+		entityObject.setPassword("user1");
 		userService.save(entityObject );
 	}
 	

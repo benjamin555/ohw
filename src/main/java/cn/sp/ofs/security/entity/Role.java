@@ -1,4 +1,4 @@
-package cn.sp.ofs.excel.entity;
+package cn.sp.ofs.security.entity;
 
 import java.util.List;
 

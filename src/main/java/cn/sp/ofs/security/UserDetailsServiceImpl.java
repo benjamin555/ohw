@@ -8,8 +8,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
-import cn.sp.ofs.excel.entity.User;
-import cn.sp.ofs.excel.service.UserService;
+import cn.sp.ofs.security.entity.User;
+import cn.sp.ofs.security.service.UserService;
 
 /**
  * 实现SpringSecurity的UserDetailsService接口,实现获取用户Detail信息的回调函数.

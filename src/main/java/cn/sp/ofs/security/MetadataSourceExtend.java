@@ -23,9 +23,9 @@ import org.springframework.security.web.util.AntPathRequestMatcher;
 import org.springframework.security.web.util.RequestMatcher;
 import org.springframework.transaction.annotation.Transactional;
 
-import cn.sp.ofs.excel.entity.Resource;
-import cn.sp.ofs.excel.entity.Role;
-import cn.sp.ofs.excel.service.RoleService;
+import cn.sp.ofs.security.entity.Resource;
+import cn.sp.ofs.security.entity.Role;
+import cn.sp.ofs.security.service.RoleService;
 
 @Transactional
 public class MetadataSourceExtend implements FilterInvocationSecurityMetadataSource {

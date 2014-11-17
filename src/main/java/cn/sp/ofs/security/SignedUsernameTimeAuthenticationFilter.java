@@ -8,7 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import cn.sp.ofs.excel.dao.UserDao;
+import cn.sp.ofs.security.dao.UserDao;
  
 public class SignedUsernameTimeAuthenticationFilter extends
 		UsernamePasswordAuthenticationFilter {

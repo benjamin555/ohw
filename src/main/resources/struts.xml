@@ -5,7 +5,7 @@
 	<constant name="struts.custom.i18n.resources" value="message" />
 	<constant name="struts.convention.package.locators" value="action" />
 	<constant name="struts.convention.package.locators.basePackage"
-		value="cn.sp.ofs.excel.action" />
+		value="cn.sp.ofs" />
 	<constant name="struts.ui.theme" value="simple" />
 	<constant name="struts.multipart.saveDir" value="upload"></constant>
 	<constant name="struts.multipart.maxSize" value="1024102400"></constant>

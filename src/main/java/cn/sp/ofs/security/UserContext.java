@@ -1,6 +1,6 @@
 package cn.sp.ofs.security;
 
-import cn.sp.ofs.excel.entity.User;
+import cn.sp.ofs.security.entity.User;
 
 public interface UserContext {
 

@@ -1,4 +1,4 @@
-package cn.sp.ofs.excel.service;
+package cn.sp.ofs.security.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
-import cn.sp.ofs.excel.entity.Resource;
-import cn.sp.ofs.excel.entity.Role;
+import cn.sp.ofs.security.entity.Resource;
+import cn.sp.ofs.security.entity.Role;
 import cn.sp.test.BaseTest;
 /**
 * @author 陈嘉镇
