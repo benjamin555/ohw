@@ -23,7 +23,7 @@ public class UserService  implements IBaseService<User,Long> {
 
 	@Override
 	public User getById(Long id) {
-		return null;
+		return dao.get(id);
 	}
 
 	@Override
@@ -33,20 +33,17 @@ public class UserService  implements IBaseService<User,Long> {
 
 	@Override
 	public void delete(User entityObject) {
-		// TODO Auto-generated method stub
-		
+		dao.delete(entityObject);
 	}
 
 	@Override
 	public void deleteById(Long id) {
-		// TODO Auto-generated method stub
-		
+		dao.delete(id);
 	}
 
 	@Override
 	public List<User> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.getAll();
 	}
 
 	public User getByUsername(String username) {

@@ -1,7 +1,7 @@
 package cn.sp.ofs.security.entity;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,7 +24,7 @@ public class User extends BaseEntity<Long>{
 	private String password;
 	@ManyToMany
 	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "role_id", referencedColumnName = "id") })
-	private Set<Role> roles;
+	private Collection<Role> roles;
 
 	public String getUserName() {
 		return userName;
@@ -47,18 +47,19 @@ public class User extends BaseEntity<Long>{
 		return "User [userName=" + userName + ", password=" + password + "]";
 	}
 
-	public Set<Role> getRoles() {
+
+	public Collection<Role> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(Set<Role> roles) {
+	public void setRoles(Collection<Role> roles) {
 		this.roles = roles;
 	}
 
 	public void addRole(Role r) {
-		Set<Role> rSet = getRoles();
+		Collection<Role> rSet = getRoles();
 		if (rSet==null) {
-			rSet = new HashSet<Role>();
+			rSet = new ArrayList<Role>();
 		}
 		rSet.add(r);
 	}

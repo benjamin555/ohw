@@ -15,7 +15,7 @@
 	<s:http pattern="/**/*.css" security="none" />
 	<s:http pattern="/**/*.js" security="none" />
 	<s:http pattern="/login.jsp" security="none" />
-	
+	<s:http pattern="/index.jsp" security="none" />
 
 	<!-- 开启默认的拦截器 -->
 	<s:http auto-config='true'  use-expressions="true"
@@ -23,8 +23,6 @@
 		<s:form-login username-parameter="userName" password-parameter="password" login-processing-url="/login" login-page="/login.jsp" default-target-url="/index.jsp"
 			authentication-failure-url="/login.jsp?error=true" />
 		<s:logout logout-url="/logout" logout-success-url="/"/>
-		<s:intercept-url pattern="/index.jsp" access="permitAll" />
-		
 		
 		
 		<s:custom-filter ref="securityInterceptorExtend"

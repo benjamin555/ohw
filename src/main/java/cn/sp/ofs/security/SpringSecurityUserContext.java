@@ -1,5 +1,6 @@
 package cn.sp.ofs.security;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -37,7 +38,7 @@ public class SpringSecurityUserContext implements UserContext {
 		}
 		Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
 		authorities = new HashSet<GrantedAuthority>();
-		Set<Role> rs = user.getRoles();
+		Collection<Role> rs = user.getRoles();
 		for (Role role : rs) {
 			GrantedAuthority g = new SimpleGrantedAuthority(role.getId() + "");
 			authorities.add(g);

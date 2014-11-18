@@ -33,7 +33,7 @@ public class AccessManagerExtend implements AccessDecisionManager {
 				}
 			}
 			if (!_hasAuthorization) {
-				throw new AccessDeniedException("no right");
+				throw new AccessDeniedException("权限不足!");
 			}
 		}
 	}

@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
@@ -21,7 +20,9 @@ public class UserDetailsExtend extends User implements UserDetails {
 
 	public UserDetailsExtend(User u) {
 		try {
-			BeanUtils.copyProperties(this, u);
+			this.setUserName(u.getUserName());
+			this.setPassword(u.getPassword());
+			this.setRoles(u.getRoles());
 		} catch (Exception e) {
 			logger.error("error.",e);
 		} 
@@ -31,7 +32,7 @@ public class UserDetailsExtend extends User implements UserDetails {
 	public Collection<GrantedAuthority> getAuthorities() {
 		if (authorities==null) {
 			 authorities = new HashSet<GrantedAuthority>();
-			Set<Role> rs = getRoles();
+			Collection<Role> rs = getRoles();
 			for (Role role : rs) {
 				GrantedAuthority g = new SimpleGrantedAuthority(role.getId() + "");
 				authorities.add(g);
