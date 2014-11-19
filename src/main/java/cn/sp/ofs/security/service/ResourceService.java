@@ -23,8 +23,7 @@ public class ResourceService  implements IBaseService<Resource,Long> {
 
 	@Override
 	public Resource getById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.getById(id);
 	}
 
 	@Override
@@ -34,22 +33,21 @@ public class ResourceService  implements IBaseService<Resource,Long> {
 
 	@Override
 	public void delete(Resource entityObject) {
-		// TODO Auto-generated method stub
+		dao.delete(entityObject);
 		
 	}
 
 	@Override
 	public void deleteById(Long id) {
-		// TODO Auto-generated method stub
+		dao.delete(id);
 		
 	}
 
 	@Override
 	public List<Resource> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Resource> all = dao.getAll();
+		return all;
 	}
-
 
 
 

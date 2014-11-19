@@ -43,7 +43,7 @@ public class MetadataSourceExtend implements FilterInvocationSecurityMetadataSou
 	public MetadataSourceExtend() {
 		super();
 	}
-	private void loadResourceDefine() {
+	public void loadResourceDefine() {
 		log.info("loadResourceDefine");
 		resourceMap = new HashMap<String, Collection<ConfigAttribute>>();
 		List<Role> _roleAllList = roleService.getAll();

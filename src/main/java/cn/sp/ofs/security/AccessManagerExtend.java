@@ -15,14 +15,19 @@ import org.springframework.security.core.GrantedAuthority;
 
 public class AccessManagerExtend implements AccessDecisionManager {
 	private Logger log = LoggerFactory.getLogger(getClass());
-	public void decide(Authentication authentication, Object object, Collection<ConfigAttribute> configAttributes) throws AccessDeniedException, InsufficientAuthenticationException {
+
+	public void decide(Authentication authentication, Object object, Collection<ConfigAttribute> configAttributes)
+			throws AccessDeniedException, InsufficientAuthenticationException {
 		log.debug("decide");
+
 		if ((configAttributes != null) && (!configAttributes.isEmpty())) {
 			boolean _hasAuthorization = false;
+			//请求所需要的角色集合
 			Iterator<ConfigAttribute> ite = configAttributes.iterator();
 			while (ite.hasNext()) {
 				ConfigAttribute ca = ite.next();
 				String needRole = ((SecurityConfig) ca).getAttribute();
+
 				for (GrantedAuthority ga : authentication.getAuthorities()) {
 					// 判断需要的角色是否存在
 					// 添加URL的数据权限判断加载这里
@@ -31,6 +36,7 @@ public class AccessManagerExtend implements AccessDecisionManager {
 						break;
 					}
 				}
+
 			}
 			if (!_hasAuthorization) {
 				throw new AccessDeniedException("权限不足!");
