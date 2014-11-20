@@ -77,5 +77,5 @@
 
 	<!-- 使用annotation定义事务 -->
 	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
-	
+	<bean id="ComponentFactory" class="cn.sp.spring.utils.ComponentFactory" />
 </beans>

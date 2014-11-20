@@ -54,7 +54,7 @@ public class MetadataSourceExtend implements FilterInvocationSecurityMetadataSou
 				_temp.add(_role);
 				Set<String> _urlSet = recursiveRole(_temp);
 				for (String _url : _urlSet) {
-					Collection<ConfigAttribute> _atts = resourceMap.get(_url);
+					Collection<ConfigAttribute> _atts = getAuths(_url);
 					if (null == _atts)
 						_atts = new ArrayList<ConfigAttribute>();
 					ConfigAttribute _att = new SecurityConfig(roleName);
@@ -91,12 +91,17 @@ public class MetadataSourceExtend implements FilterInvocationSecurityMetadataSou
 			String urlPattern = ite.next();
 			RequestMatcher urlMatcher = new AntPathRequestMatcher(urlPattern);
 			if (urlMatcher.matches(request)) {
-				Collection<ConfigAttribute> auths = resourceMap.get(urlPattern);
+				Collection<ConfigAttribute> auths = getAuths(urlPattern);
 				log.debug("need auths:{}",auths);
 				return auths;
 			}
 		}
 		return Collections.emptyList();
+	}
+
+	protected Collection<ConfigAttribute> getAuths(String urlPattern) {
+		Collection<ConfigAttribute> auths = resourceMap.get(urlPattern);
+		return auths;
 	}
 
 	public boolean supports(Class<?> arg0) {

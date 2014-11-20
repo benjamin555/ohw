@@ -43,7 +43,11 @@
 					class="form-control" name="skipRowStr" placeholder="用逗号分隔" required
 					value="1,1,1" /> <br />
 				<input class="btn btn-lg btn-primary " value="提交" type="button" id="submitBtn"  />
-				<input class="btn btn-lg btn-primary " value="保存查询" type="button" id="saveBtn" />
+				<c:url var="eventsUrl" value="/qstatement!save.action" />
+				<sec:authorize url="${eventsUrl}">
+				<li><a id="navEventsLink" href="${eventsUrl}">All Events</a></li>
+				</sec:authorize>
+				<bsp:button clazz="btn btn-lg btn-primary "  url="/qstatement!save.action" id="saveBtn" value="保存查询" ></bsp:button>
 			</form>
 		</div>
 	</div>
