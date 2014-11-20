@@ -18,9 +18,9 @@
 	<!-- 开启默认的拦截器 -->
 	<s:http auto-config='true'  use-expressions="true"
 		entry-point-ref="authenticationProcessingFilterEntryPoint">
-		<s:form-login username-parameter="userName" password-parameter="password" login-processing-url="/login" login-page="/login.jsp" default-target-url="/index.jsp"
+		<s:form-login username-parameter="userName" password-parameter="password" login-processing-url="/login.action" login-page="/login.jsp" default-target-url="/index.jsp"
 			authentication-failure-url="/login.jsp?error=true" />
-		<s:logout logout-url="/logout" logout-success-url="/"/>
+		<s:logout logout-url="/logout.action" logout-success-url="/"/>
 		<!-- 判断是否有操作权限 -->
 		<s:custom-filter ref="securityInterceptorExtend"
 			before="FILTER_SECURITY_INTERCEPTOR" />

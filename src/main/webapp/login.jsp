@@ -32,7 +32,7 @@ if(obj!=null){
 		<span style="color:red"><%=msg %></span>
 	</div>
 	<div class="container">
-		<form class="form-signin" action="login"
+		<form class="form-signin" action="login.action"
 			method="post">
 			<label for="userName">帐号：</label><input class="form-control"
 				name="userName" placeholder="帐号" required autofocus /><label

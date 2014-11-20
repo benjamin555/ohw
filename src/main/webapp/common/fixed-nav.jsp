@@ -16,7 +16,7 @@
                         <c:choose>
                             <c:when test="${authenticated && !empty currentUserName}">
                                 <li >欢迎：${currentUserName}</li>
-                                <li ><a href="<%=basePath%>logout">登出</a>
+                                <li ><a href="<%=basePath%>logout.action">登出</a>
 								</li>
                             </c:when>
                             <c:otherwise>
