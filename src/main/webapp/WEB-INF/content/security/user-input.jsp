@@ -27,6 +27,10 @@
 				class="form-control" type="text" name="userName"
 				value="<s:property value="model.userName" />" />
 				
+				<label for="name">密码:</label><input
+				class="form-control" type="text" name="password"
+				value="" required />
+				
 			<label for="name">角色列表:</label>
 			<textarea class="form-control" rows="3" id="roles"><s:iterator value="model.roles" var="m"><s:property value="#m.name" />,</s:iterator>
 			</textarea>

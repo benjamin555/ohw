@@ -14,6 +14,7 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Controller;
 
 import cn.sp.action.CrudActionSupport;
@@ -75,16 +76,25 @@ public class UserAction extends CrudActionSupport<User> {
 
 	@Override
 	public String save() throws Exception {
+		String pwd = getEncodePwd();
+		model.setPassword(pwd);
 		if (model.getId()!=null) {
 			User d = service.getById(model.getId());
 			d.setUserName(model.getUserName());
 			d.setRoles(model.getRoles());
+			d.setPassword(model.getPassword());
 			service.save(d);
 		}else {
 			service.save(model);
-			
 		}
 		return R_LIST;
+	}
+
+
+	protected String getEncodePwd() {
+		Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+		String pwd = encoder.encodePassword(model.getPassword(), model.getUserName());
+		return pwd;
 	}
 
 

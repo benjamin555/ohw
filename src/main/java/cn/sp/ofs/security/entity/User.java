@@ -18,9 +18,9 @@ import cn.sp.persistent.BaseEntity;
 */
 @Entity
 public class User extends BaseEntity<Long>{
-	@Column(unique=true)
+	@Column(unique=true,nullable=false)
 	private String userName;
-	
+	@Column(nullable=false)
 	private String password;
 	@ManyToMany
 	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "role_id", referencedColumnName = "id") })
