@@ -9,7 +9,7 @@
 	<groupId>cn.sp.ofs.excel</groupId>
 	<artifactId>ohw</artifactId>
 	<packaging>war</packaging>
-	<name>helper-web Maven Webapp</name>
+	<name>ohw Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -74,7 +74,7 @@
 		
 	</dependencies>
 	<build>
-		<finalName>helper-web</finalName>
+		<finalName>ohw</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
