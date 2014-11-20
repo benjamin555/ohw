@@ -7,11 +7,8 @@
 		<ul class="nav navbar-nav " >
             <li ><a href="<%=basePath%>">主页</a></li>
             <li ><a href="<%=basePath%>ofshelp!demo.action">例子</a></li>
+            <bsp:nav url="/qstatement!list.action" value="查询列表"/>
           </ul>
-		<ul class="nav navbar-nav ">
-			<li ><a href="<%=basePath%>qstatement!list.action">查询列表</a>
-			</li>
-		</ul>
 		 
 		<ul class="nav navbar-nav navbar-right">
                         <sec:authorize access="authenticated" var="authenticated"/>
