@@ -6,19 +6,17 @@ import java.util.List;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import cn.sp.ofs.security.entity.Resource;
 import cn.sp.ofs.security.entity.Role;
-import cn.sp.test.BaseTest;
+import cn.sp.ofs.test.SpringSecurityBaseTest;
 /**
 * @author 陈嘉镇
 * @version 创建时间：2014-11-11 下午5:02:04
 * @email benjaminchen555@gmail.com
 */
 @ContextConfiguration(locations = { "classpath:test_applicationContext.xml" })
-@TransactionConfiguration(defaultRollback=true)
-public class ResourceServiceTest extends BaseTest{
+public class ResourceServiceTest extends SpringSecurityBaseTest{
 	
 	@Autowired
 	private ResourceService resourceService;

@@ -4,11 +4,10 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import cn.sp.ofs.security.entity.Role;
 import cn.sp.ofs.security.entity.User;
-import cn.sp.test.BaseTest;
+import cn.sp.ofs.test.SpringSecurityBaseTest;
 
 /**
 * @author 陈嘉镇
@@ -16,8 +15,7 @@ import cn.sp.test.BaseTest;
 * @email benjaminchen555@gmail.com
 */
 @ContextConfiguration(locations = { "classpath:test_applicationContext.xml" })
-@TransactionConfiguration(defaultRollback=true)
-public class UserServiceTest extends BaseTest{
+public class UserServiceTest extends SpringSecurityBaseTest{
 	
 	@Autowired
 	private UserService userService;
