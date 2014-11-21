@@ -16,7 +16,7 @@ import cn.sp.test.BaseTest;
 * @email benjaminchen555@gmail.com
 */
 @ContextConfiguration(locations = { "classpath:test_applicationContext.xml" })
-@TransactionConfiguration(defaultRollback=false)
+@TransactionConfiguration(defaultRollback=true)
 public class UserServiceTest extends BaseTest{
 	
 	@Autowired

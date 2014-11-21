@@ -15,7 +15,7 @@ import cn.sp.spring.utils.ComponentFactory;
 * @version 创建时间：2014-11-19 下午5:22:02
 * @email benjaminchen555@gmail.com
 */
-public class SpringSecurityUtils {
+public final class SpringSecurityUtils {
 
 	public static User getCurrentUser() {
 		SecurityContext context = SecurityContextHolder.getContext();

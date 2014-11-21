@@ -7,6 +7,8 @@ import java.sql.Clob;
 import javax.persistence.Entity;
 import javax.persistence.Transient;
 
+import org.hibernate.Hibernate;
+
 import cn.sp.persistent.BaseEntity;
 
 /**
@@ -69,6 +71,12 @@ public class Qstatement extends BaseEntity<Long> {
 			return "";
 		}
 		return getClob(getContent());
+	}
+
+	@Transient
+	public void setContent(String string) {
+		Clob clob = Hibernate.createClob(string);
+		setContent(clob);
 	}
 
 }
