@@ -18,7 +18,7 @@ public class AccessManagerExtend implements AccessDecisionManager {
 
 	public void decide(Authentication authentication, Object object, Collection<ConfigAttribute> configAttributes)
 			throws AccessDeniedException, InsufficientAuthenticationException {
-		log.debug("decide");
+		log.info("decide");
 
 		if ((configAttributes != null) && (!configAttributes.isEmpty())) {
 			boolean _hasAuthorization = hasAuth(authentication, configAttributes);
@@ -39,9 +39,11 @@ public class AccessManagerExtend implements AccessDecisionManager {
 		//请求所需要的角色集合
 		Iterator<ConfigAttribute> ite = configAttributes.iterator();
 		while (ite.hasNext()) {
+			if (_hasAuthorization) {
+				break;
+			}
 			ConfigAttribute ca = ite.next();
 			String needRole = ((SecurityConfig) ca).getAttribute();
-
 			for (GrantedAuthority ga : authentication.getAuthorities()) {
 				// 判断需要的角色是否存在
 				// 添加URL的数据权限判断加载这里

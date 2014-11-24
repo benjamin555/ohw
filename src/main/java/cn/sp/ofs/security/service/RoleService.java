@@ -1,11 +1,13 @@
 package cn.sp.ofs.security.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springside.modules.orm.Page;
 
 import cn.sp.ofs.security.dao.RoleDao;
 import cn.sp.ofs.security.entity.Role;
@@ -49,6 +51,12 @@ public class RoleService  implements IBaseService<Role,Long> {
 			Hibernate.initialize(role.getResources());
 		}
 		return all;
+	}
+
+	@Override
+	public Page<Role> getPage(int start, int size, Map<String, String> searchMap) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

@@ -1,10 +1,12 @@
 package cn.sp.ofs.security.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springside.modules.orm.Page;
 
 import cn.sp.ofs.security.dao.ResourceDao;
 import cn.sp.ofs.security.entity.Resource;
@@ -47,6 +49,12 @@ public class ResourceService  implements IBaseService<Resource,Long> {
 	public List<Resource> getAll() {
 		List<Resource> all = dao.getAll();
 		return all;
+	}
+
+	@Override
+	public Page<Resource> getPage(int start, int size, Map<String, String> searchMap) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

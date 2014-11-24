@@ -21,26 +21,45 @@
 	<%@include file="/common/fixed-nav.jsp"%>
 	<div class="container">
 		<div class="jumbotron">
-			<table id="items" class="table table-striped table-bordered">
-				<tr>
-					<td>编号</td>
-					<td>描述</td>
-					<td>sheet跳过行数</td>
-				</tr>
-				<s:iterator value="qstatements" var="q">
-					<tr class="item">
-						<td><a
-							href="<%=basePath%>qstatement!forImport.action?qstatement.id=<s:property value="#q.id" />"><s:property
-									value="#q.id" />
-						</a></td>
-						<td><s:property value="#q.description" />
-						</td>
-						<td><s:property value="#q.skipRowStr" />
-						</td>
-					</tr>
-				</s:iterator>
-			</table>
+			<!-- Nav tabs -->
+			<ul class="nav nav-tabs" role="tablist" id="myTab">
+				<li role="presentation" class="active"><a href="#self"
+					role="tab" data-toggle="tab">自建</a>
+				</li>
+				<li role="presentation"><a href="#shared" role="tab"
+					data-toggle="tab">分享</a>
+				</li>
+			</ul>
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="self">
+					<table id="items" class="table table-striped table-bordered">
+						<tr>
+							<td>编号</td>
+							<td>描述</td>
+							<td>sheet跳过行数</td>
+						</tr>
+						<s:iterator value="qstatements" var="q">
+							<tr class="item">
+								<td><a
+									href="<%=basePath%>qstatement!forImport.action?qstatement.id=<s:property value="#q.id" />"><s:property
+											value="#q.id" /> </a>
+								</td>
+								<td><s:property value="#q.description" /></td>
+								<td><s:property value="#q.skipRowStr" /></td>
+							</tr>
+						</s:iterator>
+					</table>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="shared">...</div>
+			</div>
 		</div>
 	</div>
 </body>
 </html>
+<script type="text/javascript">
+$(function () {
+    //$('#myTab a:last').tab('show')
+  })
+
+</script>

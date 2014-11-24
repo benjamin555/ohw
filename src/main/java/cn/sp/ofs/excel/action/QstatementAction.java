@@ -1,7 +1,9 @@
 package cn.sp.ofs.excel.action;
 
 import java.sql.Clob;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.struts2.convention.annotation.ExceptionMapping;
 import org.apache.struts2.convention.annotation.ExceptionMappings;
@@ -11,10 +13,13 @@ import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springside.modules.orm.Page;
 
 import cn.sp.action.CrudActionSupport;
 import cn.sp.ofs.excel.entity.Qstatement;
 import cn.sp.ofs.excel.service.QstatementService;
+import cn.sp.ofs.security.SpringSecurityUtils;
+import cn.sp.ofs.security.entity.User;
 
 /**
 * @author 陈嘉镇
@@ -63,7 +68,12 @@ public class QstatementAction extends CrudActionSupport<Qstatement>{
 
 	@Override
 	public String list() throws Exception {
-		qstatements = service.getAll();
+		User currentUser = SpringSecurityUtils.getCurrentUser();
+		long loginId = currentUser.getId();
+		Map<String, String> searchMap = new HashMap<String, String>();
+		searchMap.put("flt_m_and_eqS_creator", loginId+"");
+		Page<Qstatement> page = service.getPage(0, 25, searchMap );
+		qstatements = page.getResult();
 		return "list";
 	}
 	

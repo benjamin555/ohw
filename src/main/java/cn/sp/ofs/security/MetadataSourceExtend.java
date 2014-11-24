@@ -92,7 +92,7 @@ public class MetadataSourceExtend implements FilterInvocationSecurityMetadataSou
 			RequestMatcher urlMatcher = new AntPathRequestMatcher(urlPattern);
 			if (urlMatcher.matches(request)) {
 				Collection<ConfigAttribute> auths = getAuths(urlPattern);
-				log.debug("need auths:{}",auths);
+				log.info("need auths:{}",auths);
 				return auths;
 			}
 		}

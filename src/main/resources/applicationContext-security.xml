@@ -21,6 +21,7 @@
 		<s:form-login username-parameter="userName" password-parameter="password" login-processing-url="/login.action" login-page="/login.jsp" default-target-url="/index.jsp"
 			authentication-failure-url="/login.jsp?error=true" />
 		<s:logout logout-url="/logout.action" logout-success-url="/"/>
+		<s:remember-me key="ohw" />
 		<!-- 判断是否有操作权限 -->
 		<s:custom-filter ref="securityInterceptorExtend"
 			before="FILTER_SECURITY_INTERCEPTOR" />

@@ -1,10 +1,12 @@
 package cn.sp.ofs.excel.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springside.modules.orm.Page;
 
 import cn.sp.ofs.excel.dao.QstatementDao;
 import cn.sp.ofs.excel.entity.Qstatement;
@@ -46,6 +48,11 @@ public class QstatementService  implements IBaseService<Qstatement,Long> {
 	@Override
 	public List<Qstatement> getAll() {
 		return dao.getAll();
+	}
+
+	@Override
+	public Page<Qstatement> getPage(int start, int size, Map<String, String> searchMap) {
+		return dao.findPage(start, size, searchMap);
 	}
 
 }

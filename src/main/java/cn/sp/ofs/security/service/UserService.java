@@ -1,10 +1,12 @@
 package cn.sp.ofs.security.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springside.modules.orm.Page;
 
 import cn.sp.ofs.security.dao.UserDao;
 import cn.sp.ofs.security.entity.User;
@@ -48,6 +50,12 @@ public class UserService  implements IBaseService<User,Long> {
 
 	public User getByUsername(String username) {
 		return dao.findUniqueBy("userName", username);
+	}
+
+	@Override
+	public Page<User> getPage(int start, int size, Map<String, String> searchMap) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

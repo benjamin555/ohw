@@ -20,6 +20,7 @@ public class UserDetailsExtend extends User implements UserDetails {
 
 	public UserDetailsExtend(User u) {
 		try {
+			this.setId(u.getId());
 			this.setUserName(u.getUserName());
 			this.setPassword(u.getPassword());
 			this.setRoles(u.getRoles());

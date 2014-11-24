@@ -37,7 +37,13 @@ if(obj!=null){
 			<label for="userName">帐号：</label><input class="form-control"
 				name="userName" placeholder="帐号" required autofocus /><label
 				for="password">密码:</label> <input class="form-control"
-				name="password" type="password" placeholder=" 密码" required /><br />
+				name="password" type="password" placeholder=" 密码" required />
+				<label for="remember">记住我?</label>
+				<input type="checkbox" id="remember"
+				name="_spring_security_remember_me"
+				value="true"/>
+				
+				<br />
 			<input class="btn btn-lg btn-primary btn-block" value="提交"
 				type="submit" />
 		</form>
