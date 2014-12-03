@@ -22,6 +22,7 @@ import org.springframework.security.web.access.intercept.FilterInvocationSecurit
 import org.springframework.security.web.util.AntPathRequestMatcher;
 import org.springframework.security.web.util.RequestMatcher;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.AntPathMatcher;
 
 import cn.sp.ofs.security.entity.Resource;
 import cn.sp.ofs.security.entity.Role;
@@ -91,7 +92,7 @@ public class MetadataSourceExtend implements FilterInvocationSecurityMetadataSou
 			String urlPattern = ite.next();
 			RequestMatcher urlMatcher = new AntPathRequestMatcher(urlPattern);
 			if (urlMatcher.matches(request)) {
-				Collection<ConfigAttribute> auths = getAuths(urlPattern);
+				Collection<ConfigAttribute> auths = resourceMap.get(urlPattern);
 				log.info("need auths:{}",auths);
 				return auths;
 			}
@@ -99,9 +100,18 @@ public class MetadataSourceExtend implements FilterInvocationSecurityMetadataSou
 		return Collections.emptyList();
 	}
 
-	protected Collection<ConfigAttribute> getAuths(String urlPattern) {
-		Collection<ConfigAttribute> auths = resourceMap.get(urlPattern);
-		return auths;
+	protected Collection<ConfigAttribute> getAuths(String url) {
+		Iterator<String> ite = resourceMap.keySet().iterator();
+		while (ite.hasNext()) {
+			String resourceUrl = ite.next();
+			AntPathMatcher antPathMatcher = new AntPathMatcher();
+			if(antPathMatcher.match(resourceUrl, url)){
+				Collection<ConfigAttribute> auths = resourceMap.get(resourceUrl);
+				return auths;
+			}
+			
+		}
+		return null;
 	}
 
 	public boolean supports(Class<?> arg0) {

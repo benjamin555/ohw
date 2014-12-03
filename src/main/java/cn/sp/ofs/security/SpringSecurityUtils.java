@@ -31,7 +31,11 @@ public final class SpringSecurityUtils {
 		MetadataSourceExtend metadataSourceExtend = (MetadataSourceExtend) ComponentFactory.getBean("metadataSourceExtend");
 		SecurityContext context = SecurityContextHolder.getContext();
 		Authentication authentication = context.getAuthentication();
+		//获取需要的角色
 		Collection<ConfigAttribute> configAttributes = metadataSourceExtend.getAuths(url);
+		if (configAttributes==null||configAttributes.isEmpty()) {
+			return true;
+		}
 		return accessManager.hasAuth(authentication, configAttributes);
 	}
 }

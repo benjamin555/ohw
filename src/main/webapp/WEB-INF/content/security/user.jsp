@@ -18,6 +18,7 @@
 <%@include file="/bootstrap-header.jsp"%>
 </head>
 <body>
+	<%@include file="/common/fixed-nav.jsp"%>
 	<div id="btnDiv" align="right">
 		<button type="button" id="queryBtn" class="btn btn-info">查询</button>
 		<button type="button" id="insertBtn" url="<%=basePath%>/security/user!input.action" class="btn btn-success">新增</button>
