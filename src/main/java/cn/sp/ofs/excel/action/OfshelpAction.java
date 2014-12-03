@@ -19,7 +19,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import cn.sp.ofs.excel.GenTableNameStrategy;
 import cn.sp.ofs.excel.Helper;
+import cn.sp.ofs.excel.SpringSecurityGenTableNameStrategy;
 import cn.sp.ofs.excel.utils.StringUtils;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -63,6 +65,8 @@ public class OfshelpAction extends ActionSupport{
 		doCheck();
 		
 		Helper helper = new Helper();
+		GenTableNameStrategy genTableNameStrategy = new SpringSecurityGenTableNameStrategy();
+		helper.setGenTableNameStrategy(genTableNameStrategy );
 		skipRowStr = StringUtils.replaceCNSign(skipRowStr);
 		String[] ss = skipRowStr.split(",");
 		int[] skipRows=new int[ss.length];

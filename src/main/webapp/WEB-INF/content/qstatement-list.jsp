@@ -33,25 +33,9 @@
 			<!-- Tab panes -->
 			<div class="tab-content">
 				<div role="tabpanel" class="tab-pane active" id="self">
-					<table id="items" class="table table-striped table-bordered">
-						<tr>
-							<td>编号</td>
-							<td>描述</td>
-							<td>sheet跳过行数</td>
-						</tr>
-						<s:iterator value="qstatements" var="q">
-							<tr class="item">
-								<td><a
-									href="<%=basePath%>qstatement!forImport.action?qstatement.id=<s:property value="#q.id" />"><s:property
-											value="#q.id" /> </a>
-								</td>
-								<td><s:property value="#q.description" /></td>
-								<td><s:property value="#q.skipRowStr" /></td>
-							</tr>
-						</s:iterator>
-					</table>
+					<%@include file="_item-list.jsp"%>
 				</div>
-				<div role="tabpanel" class="tab-pane" id="shared">...</div>
+				<div role="tabpanel" class="tab-pane" id="shared"><%@include file="_item-list.jsp"%></div>
 			</div>
 		</div>
 	</div>
