@@ -17,16 +17,11 @@ import cn.sp.spring.utils.ComponentFactory;
 */
 public final class SpringSecurityUtils {
 
+	/**
+	 * 获取当前登录用户
+	 * @return 没有登录则返回空
+	 */
 	public static User getCurrentUser() {
-		SecurityContext context = SecurityContextHolder.getContext();
-		Authentication authentication = context.getAuthentication();
-		if (authentication == null) {
-			return null;
-		}
-		return (User) authentication.getPrincipal();
-	}
-	
-	public static String getCurrentUserId() {
 		SecurityContext context = SecurityContextHolder.getContext();
 		Authentication authentication = context.getAuthentication();
 		if (authentication == null) {
@@ -34,9 +29,15 @@ public final class SpringSecurityUtils {
 		}
 		Object pricipal = authentication.getPrincipal();
 		if (pricipal instanceof User) {
-			return ((User)pricipal).getId()+"";
+			return ((User)pricipal);
+		}else {
+			return null;
 		}
-		return "";
+	}
+	
+	public static String getCurrentUserId() {
+		User currentUser = getCurrentUser();
+		return currentUser==null?"":currentUser.getId()+"";
 	}
 
 	public static boolean isAllowed(String url) {
