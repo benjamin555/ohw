@@ -24,7 +24,7 @@
 					<li><a href="<%=basePath%>logout.action">登出</a></li>
 				</c:when>
 				<c:otherwise>
-					<c:url var="signupUrl" value="/signup/form" />
+					<c:url var="signupUrl" value="/signup.action" />
 					<li><a id="navSignupLink" href="${signupUrl}">注册</a>
 					</li>
 					<c:url var="loginUrl" value="/login.jsp" />

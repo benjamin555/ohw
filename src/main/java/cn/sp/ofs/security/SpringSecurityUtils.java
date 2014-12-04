@@ -25,6 +25,19 @@ public final class SpringSecurityUtils {
 		}
 		return (User) authentication.getPrincipal();
 	}
+	
+	public static String getCurrentUserId() {
+		SecurityContext context = SecurityContextHolder.getContext();
+		Authentication authentication = context.getAuthentication();
+		if (authentication == null) {
+			return null;
+		}
+		Object pricipal = authentication.getPrincipal();
+		if (pricipal instanceof User) {
+			return ((User)pricipal).getId()+"";
+		}
+		return "";
+	}
 
 	public static boolean isAllowed(String url) {
 		AccessManagerExtend accessManager = (AccessManagerExtend) ComponentFactory.getBean("accessManagerExtend");

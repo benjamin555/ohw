@@ -84,7 +84,7 @@ public class MetadataSourceExtend implements FilterInvocationSecurityMetadataSou
 	}
 
 	public Collection<ConfigAttribute> getAttributes(Object filter) throws IllegalArgumentException {
-		log.info("getAttributes");
+		log.debug("getAttributes");
 		HttpServletRequest request = ((FilterInvocation) filter).getHttpRequest();
 		Iterator<String> ite = resourceMap.keySet().iterator();
 
