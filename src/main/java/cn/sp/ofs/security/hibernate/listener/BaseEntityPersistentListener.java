@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import cn.sp.ofs.security.SpringSecurityUtils;
-import cn.sp.ofs.security.entity.User;
 import cn.sp.persistent.BaseEntity;
 
 /**
@@ -35,7 +34,6 @@ public class BaseEntityPersistentListener implements PreInsertEventListener, Pre
 				logger.error("error.",e);
 			}
 			
-			logger.info("entity:{}", entity);
 		}
 		return false;
 	}
@@ -53,7 +51,6 @@ public class BaseEntityPersistentListener implements PreInsertEventListener, Pre
 			} catch (Exception e) {
 				logger.error("error.",e);
 			}
-			logger.info("entity:{}", entity);
 		}
 		return false;
 	}

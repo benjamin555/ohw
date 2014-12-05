@@ -31,4 +31,18 @@ public class QstatementDao extends BaseEntityDao<Qstatement, Long> {
 		return findPage(page, hql, values);
 	}
 
+	public Page<Qstatement> findShared(int start, int size, long sharedUserId, Map<String, String> searchMap) {
+		Page<Qstatement> page = new Page<Qstatement>();
+		page.setPageSize(size);
+		page.setStart(start);
+		Map<String, Object> values = new HashMap<String, Object>();
+		String append = HqlUtil.buildHqlAppend(searchMap, values);
+		String hql = "select m from Qstatement m join m.sharedUsers s where m.isUse='Y' and :sharedUserId = s.id  ";
+		hql += append;
+		values.put("sharedUserId", sharedUserId);
+		logger.info(hql);
+		return findPage(page, hql, values);
+	}
+
+
 }

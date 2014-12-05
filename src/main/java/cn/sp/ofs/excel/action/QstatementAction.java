@@ -20,6 +20,8 @@ import cn.sp.ofs.excel.entity.Qstatement;
 import cn.sp.ofs.excel.service.QstatementService;
 import cn.sp.ofs.security.SpringSecurityUtils;
 import cn.sp.ofs.security.entity.User;
+import cn.sp.ofs.security.service.UserService;
+import cn.sp.web.utils.JsonUtils;
 
 /**
 * @author 陈嘉镇
@@ -30,18 +32,38 @@ import cn.sp.ofs.security.entity.User;
 @Controller
 @Scope("prototype")
 @ExceptionMappings({ @ExceptionMapping(exception = "java.lang.Exception", result = "exception") })
-@Results({ @Result(name = "exception", location = "/common/error.jsp") })
+@Results({ @Result(name = "exception", location = "/common/error.jsp"),@Result(name = "json", location = "/common/json.jsp") })
 public class QstatementAction extends CrudActionSupport<Qstatement>{
 	
+	public static final String JSON = "json";
+
+	public static final String LIST = "list";
+	
+	private long[] ids;
+
+	private String jsonStr;
+
 	private Qstatement qstatement;
 	
+	/**
+	 * 被分享用户名
+	 */
+	private String sharedUserName ;
+	
 	private List<Qstatement> qstatements;
+	
+	/**
+	 * 分享的
+	 */
+	private List<Qstatement> sharedList;
 	
 	private String sql;
 	
 	
 	@Autowired
 	private QstatementService service;
+	@Autowired
+	private UserService userService;
 	
 	public String save() throws Exception {
 		Clob clob = Hibernate.createClob(sql);
@@ -74,7 +96,15 @@ public class QstatementAction extends CrudActionSupport<Qstatement>{
 		searchMap.put("flt_m_and_eqS_creator", loginId+"");
 		Page<Qstatement> page = service.getPage(0, 25, searchMap );
 		qstatements = page.getResult();
-		return "list";
+		
+		Map<String, String> searchMap2 = new HashMap<String, String>();
+		Page<Qstatement> page2 = service.getShared(0, 25,loginId, searchMap2 );
+		sharedList = page2.getResult();
+		
+		jsonStr = JsonUtils.getSuccessMsg();
+		
+		
+		return LIST;
 	}
 	
 	public String forImport() throws Exception {
@@ -124,7 +154,51 @@ public class QstatementAction extends CrudActionSupport<Qstatement>{
 	public void setSql(String sql) {
 		this.sql = sql;
 	}
+
+	public List<Qstatement> getSharedList() {
+		return sharedList;
+	}
+
+	public void setSharedList(List<Qstatement> sharedList) {
+		this.sharedList = sharedList;
+	}
+
+	public String share() {
+		User u = userService.getByUsername(sharedUserName);
+		if (u==null) {
+			jsonStr = JsonUtils.getErrorMsg("系统中不存在该用户");
+		}else {
+			long sharedUserId=u.getId();
+			service.shareTo(ids,sharedUserId );
+			jsonStr=JsonUtils.getSuccessMsg();
+		}
+		return JSON;
+	}
+
 	
-	
+
+	public String getSharedUserName() {
+		return sharedUserName;
+	}
+
+	public void setSharedUserName(String sharedUserName) {
+		this.sharedUserName = sharedUserName;
+	}
+
+	public long[] getIds() {
+		return ids;
+	}
+
+	public void setIds(long[] ids) {
+		this.ids = ids;
+	}
+
+	public String getJsonStr() {
+		return jsonStr;
+	}
+
+	public void setJsonStr(String jsonStr) {
+		this.jsonStr = jsonStr;
+	}
 
 }

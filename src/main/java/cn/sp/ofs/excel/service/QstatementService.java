@@ -55,4 +55,28 @@ public class QstatementService  implements IBaseService<Qstatement,Long> {
 		return dao.findPage(start, size, searchMap);
 	}
 
+	public void shareTo(Qstatement qstatement, long sharedUserId) {
+		qstatement.shareTo(sharedUserId);
+		dao.save(qstatement);
+	}
+
+	/**
+	 * 获取分享的
+	 * @param start
+	 * @param size
+	 * @param sharedUserId 被分享帐号id
+	 * @param searchMap
+	 * @return
+	 */
+	public Page<Qstatement> getShared(int start, int size, long sharedUserId, Map<String, String> searchMap) {
+		return dao.findShared(start, size,sharedUserId, searchMap);
+	}
+
+	public void shareTo(long[] ids, long sharedUserId) {
+		for (long l : ids) {
+			Qstatement qstatement = getById(l);
+			shareTo(qstatement, sharedUserId);
+		}
+	}
+
 }
