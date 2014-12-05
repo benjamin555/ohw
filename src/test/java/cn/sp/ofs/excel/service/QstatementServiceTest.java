@@ -50,6 +50,9 @@ public class QstatementServiceTest extends SpringSecurityBaseTest {
 		service.save(entityObject);
 
 		Assert.isTrue("1".equals(entityObject.getCreator()));
+		
+		Qstatement q = service.getById(entityObject.getId());
+		Assert.isTrue("1".equals(q.getCreator()));
 
 		new Verifications() {
 			{
