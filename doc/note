@@ -1,3 +1,17 @@
+系统变量：
+WIN:
+JDBC_H2_DISK=jdbc:h2:E:/h2db/ofs;AUTO_SERVER=TRUE
+LOG_DIR=D:\logs
+LIUNX:
+export LOG_DIR=/logs
+export JDBC_H2_DISK=jdbc:h2:/h2db/ofs;AUTO_SERVER=TRUE
+
+
+git add -f cn/sp/ofs/excel/ohc/1.0-SNAPSHOT
+git commit -m "ohc"
+git push origin snapshot
+
+
 http://114.215.127.231/phpmyadmin/
 
 ####杰少
