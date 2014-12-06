@@ -33,16 +33,24 @@
 		<div class="jumbotron">
 			<form id="eForm" role="form" action="<%=basePath%>ofshelp.action" method="post"
 				enctype="multipart/form-data">
+				<s:hidden name="id" value="%{id}" ></s:hidden>
+				
 				<label for="url">查询语句:</label>
 				<textarea class="form-control" rows="8" name="sql" autofocus
-					required placeholder="请输入... " readonly="readonly"><s:property value="qstatement.content2String" /></textarea>
-				<br /> <span class="btn btn-success fileinput-button"> <i
+					required placeholder="请输入... " ><s:property value="qstatement.content2String" /></textarea>
+				<br /> 
+				<label >描述:</label> <input
+					class="form-control" name="description" placeholder="描述" required
+					value="<s:property value="qstatement.description" />"   /> <br />
+				
+				<span class="btn btn-success fileinput-button"> <i
 					class="icon-plus icon-white"></i> <span>请选择excel,可直接多选</span> <input
 					id="fileupload" type="file" name="dataExcels" multiple required>
 				</span> <br /> <label for="url">sheet跳过行数:</label> <input
-					class="form-control" name="skipRowStr" placeholder="用逗号分隔" required
-					value="<s:property value="qstatement.skipRowStr" />" readonly="readonly"  /> <br />
+					class="form-control" name="skipRowStr"  placeholder="用逗号分隔" required
+					value="<s:property value="qstatement.skipRowStr" />"   /> <br />
 				<input class="btn btn-lg btn-primary " value="提交" type="submit" id="submitBtn"  />
+				<bsp:button clazz="btn btn-lg btn-primary "  url="/qstatement!save.action" id="saveBtn" value="保存查询" ></bsp:button>
 			</form>
 		</div>
 	</div>
@@ -51,7 +59,10 @@
 <script type="text/javascript">
 $(function(){
 	var basePath = $("#basePath").val();
-	
+	$("#saveBtn").click(function(){
+		$("#eForm").attr("action",basePath+"qstatement!save.action");
+		$("#eForm").submit();
+	});
 	
 });
 

@@ -13,7 +13,7 @@
 								 <input type="checkbox" name="ids" value="<s:property value="#q.id" />"></input>
 								</td>
 								<td><a
-									href="<%=basePath%>qstatement!forImport.action?qstatement.id=<s:property value="#q.id" />"><s:property
+									href="<%=basePath%>qstatement!input.action?qstatement.id=<s:property value="#q.id" />"><s:property
 											value="#q.id" /> </a>
 								</td>
 								<td><s:property value="#q.description" /></td>

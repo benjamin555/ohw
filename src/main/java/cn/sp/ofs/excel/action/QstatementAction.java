@@ -32,9 +32,14 @@ import cn.sp.web.utils.JsonUtils;
 @Controller
 @Scope("prototype")
 @ExceptionMappings({ @ExceptionMapping(exception = "java.lang.Exception", result = "exception") })
-@Results({ @Result(name = "exception", location = "/common/error.jsp"),@Result(name = "json", location = "/common/json.jsp") })
+@Results({ @Result(name = "exception", location = "/common/error.jsp")
+,@Result(name = "json", location = "/common/json.jsp")
+,@Result(name = QstatementAction.R_LIST, location = "qstatement!list.action", type = "redirect")
+})
 public class QstatementAction extends CrudActionSupport<Qstatement>{
 	
+	public static final String R_LIST = "rList";
+
 	public static final String JSON = "json";
 
 	public static final String LIST = "list";
@@ -68,8 +73,18 @@ public class QstatementAction extends CrudActionSupport<Qstatement>{
 	public String save() throws Exception {
 		Clob clob = Hibernate.createClob(sql);
 		qstatement.setContent(clob);
-		service.save(qstatement);
-		return list();
+		if (qstatement.getId()!=null) {
+			Qstatement d = service.getById(qstatement.getId());
+			d.setDescription(qstatement.getDescription());
+			d.setContent(qstatement.getContent());
+			d.setSkipRowStr(qstatement.getSkipRowStr());
+			service.save(d);
+			
+		}else {
+			service.save(qstatement);
+		}
+		
+		return R_LIST;
 	}
 
 	public Qstatement getQstatement() {
@@ -115,8 +130,8 @@ public class QstatementAction extends CrudActionSupport<Qstatement>{
 
 	@Override
 	public String input() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		qstatement = service.getById(qstatement.getId());
+		return INPUT;
 	}
 
 	@Override
