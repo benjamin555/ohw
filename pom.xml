@@ -16,6 +16,21 @@
 		<maven.compiler.source>1.6</maven.compiler.source>
 		<maven.compiler.target>1.6</maven.compiler.target>
 	</properties>
+	
+	<repositories>
+        <repository>
+            <id>ben-maven-snapshot-repository</id>
+            <name>ben-maven-snapshot-repository</name>
+            <url>https://raw.github.com/benjamin555/maven/snapshot/</url>
+        </repository>
+        <repository>
+            <id>ben-maven-release-repository</id>
+            <name>ben-maven-release-repository</name>
+            <url>https://raw.github.com/benjamin555/maven/release/</url>
+        </repository>
+    </repositories>
+	
+	
 	<dependencies>
 
 
