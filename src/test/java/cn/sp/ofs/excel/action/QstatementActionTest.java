@@ -10,6 +10,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
+import org.springside.modules.orm.Page;
 
 import cn.sp.ofs.excel.entity.Qstatement;
 import cn.sp.ofs.security.SpringSecurityUtils;
@@ -56,7 +57,10 @@ public class QstatementActionTest extends BaseTest {
 	@Test
 	public void testList() throws Exception {
 		adminLogin();
-		
+		Page<Qstatement> page = new Page<Qstatement>();
+		page.setPageNo(1);
+		page.setPageSize(5);
+		action.setPage(page );
 		String retString = action.list();
 		Assert.notEmpty(action.getQstatements());
 		Assert.isTrue(QstatementAction.LIST.equals(retString));
@@ -72,6 +76,10 @@ public class QstatementActionTest extends BaseTest {
 		action.setIds(ids );
 		
 		action.setSharedUserName(sharedUser);
+		Page<Qstatement> page = new Page<Qstatement>();
+		page.setPageNo(1);
+		page.setPageSize(5);
+		action.setPage(page );
 		String retString = action.share();
 		Assert.isTrue(QstatementAction.JSON.equals(retString));
 		
@@ -94,6 +102,28 @@ public class QstatementActionTest extends BaseTest {
 			}
 		});
 		Assert.isTrue(list.size()==ids.length);
+		
+	}
+	
+	@Test
+	public void testPage() throws Exception {
+		adminLogin();
+		int pageNo=2;
+		Page<Qstatement> page = new Page<Qstatement>();
+		page.setPageNo(pageNo);
+		page.setPageSize(5);
+		action.setPage(page );
+		String retString = action.list();
+		page= action.getPage();
+		
+		long totalPage = page.getTotalPages();
+		long t = 0;
+		if (page.getTotalCount()>0) {
+			t= page.getTotalCount()/page.getPageSize()+1;
+		}
+		Assert.isTrue(totalPage==t);
+		
+		Assert.isTrue(QstatementAction.LIST.equals(retString));
 		
 	}
 	

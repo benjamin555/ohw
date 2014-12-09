@@ -38,6 +38,8 @@ import cn.sp.web.utils.JsonUtils;
 })
 public class QstatementAction extends CrudActionSupport<Qstatement>{
 	
+	public static final int DEFAULT_PAGE_SIZE = 5;
+
 	public static final String R_LIST = "rList";
 
 	public static final String JSON = "json";
@@ -64,6 +66,9 @@ public class QstatementAction extends CrudActionSupport<Qstatement>{
 	
 	private String sql;
 	
+	private Page<Qstatement> page ;
+	
+	private Page<Qstatement> page2 ;
 	
 	@Autowired
 	private QstatementService service;
@@ -105,15 +110,21 @@ public class QstatementAction extends CrudActionSupport<Qstatement>{
 
 	@Override
 	public String list() throws Exception {
+		
+		if (page==null) {
+			page = new Page<Qstatement>();
+		}
+		
 		User currentUser = SpringSecurityUtils.getCurrentUser();
 		long loginId = currentUser.getId();
 		Map<String, String> searchMap = new HashMap<String, String>();
 		searchMap.put("flt_m_and_eqS_creator", loginId+"");
-		Page<Qstatement> page = service.getPage(0, 25, searchMap );
+		page.setPageSize(DEFAULT_PAGE_SIZE);
+		page = service.getPage(page.getStart(), page.getPageSize(), searchMap );
 		qstatements = page.getResult();
 		
 		Map<String, String> searchMap2 = new HashMap<String, String>();
-		Page<Qstatement> page2 = service.getShared(0, 25,loginId, searchMap2 );
+		 page2 = service.getShared(page.getStart(), page.getPageSize(),loginId, searchMap2 );
 		sharedList = page2.getResult();
 		
 		jsonStr = JsonUtils.getSuccessMsg();
@@ -142,7 +153,6 @@ public class QstatementAction extends CrudActionSupport<Qstatement>{
 
 	@Override
 	protected void prepareModel() throws Exception {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -214,6 +224,22 @@ public class QstatementAction extends CrudActionSupport<Qstatement>{
 
 	public void setJsonStr(String jsonStr) {
 		this.jsonStr = jsonStr;
+	}
+
+	public Page<Qstatement> getPage() {
+		return page;
+	}
+
+	public void setPage(Page<Qstatement> page) {
+		this.page = page;
+	}
+
+	public Page<Qstatement> getPage2() {
+		return page2;
+	}
+
+	public void setPage2(Page<Qstatement> page2) {
+		this.page2 = page2;
 	}
 
 }

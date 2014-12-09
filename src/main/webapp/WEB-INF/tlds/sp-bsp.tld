@@ -41,7 +41,6 @@
 	<tag>
 		<name>nav</name>
 		<tagclass>cn.sp.ofs.security.tags.Nav</tagclass>
-		<!-- 定义标签体为空 -->
         <body-content>Scriptlet</body-content>
 		<attribute>
 			<name>url</name>
@@ -54,6 +53,17 @@
 			<fragment>true</fragment>
 		</attribute>
 
+	</tag>
+	
+	<tag>
+		<name>pager</name>
+		<tagclass>cn.sp.ofs.security.tags.Pager</tagclass>
+        <body-content>Scriptlet</body-content>
+		<attribute>
+			<name>url</name>
+			<required>true</required>
+			<fragment>true</fragment>
+		</attribute>
 	</tag>
 
 </taglib>

@@ -24,51 +24,51 @@
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs" role="tablist" id="myTab">
 				<li role="presentation" class="active"><a href="#self"
-					role="tab" data-toggle="tab">自建</a>
-				</li>
+					role="tab" data-toggle="tab">自建</a></li>
 				<li role="presentation"><a href="#shared" role="tab"
-					data-toggle="tab">分享</a>
-				</li>
+					data-toggle="tab">分享</a></li>
 			</ul>
 			<!-- Tab panes -->
 			<div class="tab-content">
 				<div role="tabpanel" class="tab-pane active" id="self">
 					<div id="btnDiv" align="right">
-							<button type="button" id="shareBtn" class="btn btn-info">分享</button>
+						<button type="button" id="shareBtn" class="btn btn-info">分享</button>
 					</div>
-					<form id="shareForm" method="post" action="<%=basePath%>qstatement!share.action">
+					<form id="shareForm" method="post"
+						action="<%=basePath%>qstatement!share.action">
 						<%@include file="_qstatement_item_list.jsp"%>
-						
-						
 						<div id="userModal" class="modal fade">
-					  <div class="modal-dialog">
-					    <div class="modal-content">
-					      <div class="modal-header">
-					        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					        <h4 class="modal-title">系统提示</h4>
-					      </div>
-					      <div class="modal-body">
-					        <p>
-								<label for="name">分享给:</label><input placeholder="帐号名" name="sharedUserName" class="form-control" type="text" id="userName" required  />
-							</p>
-					      </div>
-					      <div class="modal-footer">
-					      	<button type="button" id="shareToBtn" class="btn btn-primary">确认</button>
-					        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					       
-					      </div>
-					    </div><!-- /.modal-content -->
-					  </div><!-- /.modal-dialog -->
-					</div><!-- /.modal -->
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">
+											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+										</button>
+										<h4 class="modal-title">系统提示</h4>
+									</div>
+									<div class="modal-body">
+										<p>
+											<label for="name">分享给:</label><input placeholder="帐号名"
+												name="sharedUserName" class="form-control" type="text"
+												id="userName" required />
+										</p>
+									</div>
+									<div class="modal-footer">
+										<button type="button" id="shareToBtn" class="btn btn-primary">确认</button>
+										<button type="button" class="btn btn-default"
+											data-dismiss="modal">关闭</button>
+									</div>
+								</div>
+								<!-- /.modal-content -->
+							</div>
+							<!-- /.modal-dialog -->
+						</div>
+						<!-- /.modal -->
 					</form>
-					
-					
-					
-					
-					
-					
+						<bsp:pager url="/qstatement!list.action"></bsp:pager>
 				</div>
-				<div role="tabpanel" class="tab-pane" id="shared"><%@include file="_qstatement_shared_list.jsp"%></div>
+				<div role="tabpanel" class="tab-pane" id="shared"><%@include
+						file="_qstatement_shared_list.jsp"%></div>
 			</div>
 		</div>
 	</div>
