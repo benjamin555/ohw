@@ -1,4 +1,4 @@
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="<%=basePath%>css/bootstrap.css">
 <script src="<%=basePath%>js/jquery-1.10.2.js"></script>
 <script src="<%=basePath%>js/custom/jquery.extend.js"></script>

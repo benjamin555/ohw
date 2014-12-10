@@ -1,10 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%>
+<%@include file="/common/java-header.jsp"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -23,19 +18,26 @@
 		<div class="jumbotron">
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs" role="tablist" id="myTab">
-				<li role="presentation" class="active"><a href="#self"
+				<li role="presentation" class="active"><a href="#self" id="selfTabLink"
 					role="tab" data-toggle="tab">自建</a></li>
-				<li role="presentation"><a href="#shared" role="tab"
+				<li role="presentation"><a href="#shared" id="sharedTabLink" role="tab"
 					data-toggle="tab">分享</a></li>
 			</ul>
 			<!-- Tab panes -->
+			<form id="shareForm" method="post"
+						action="<%=basePath%>qstatement!share.action">
+			<s:set var="currentActiveTab" value="%{#parameters.currentActiveTab}"></s:set>
+			<input  type="hidden" id="currentActiveTab" name="currentActiveTab" value="<s:property value="#currentActiveTab" />" />
 			<div class="tab-content">
-				<div role="tabpanel" class="tab-pane active" id="self">
+			
+			
+			
+			
+				<div role="tabpanel" class="tab-pane active id="self">
 					<div id="btnDiv" align="right">
 						<button type="button" id="shareBtn" class="btn btn-info">分享</button>
 					</div>
-					<form id="shareForm" method="post"
-						action="<%=basePath%>qstatement!share.action">
+					
 						<%@include file="_qstatement_item_list.jsp"%>
 						<div id="userModal" class="modal fade">
 							<div class="modal-dialog">
@@ -64,18 +66,47 @@
 							<!-- /.modal-dialog -->
 						</div>
 						<!-- /.modal -->
-					</form>
-						<bsp:pager url="/qstatement!list.action"></bsp:pager>
+						
+						
+					
+					
+					
+						
 				</div>
-				<div role="tabpanel" class="tab-pane" id="shared"><%@include
-						file="_qstatement_shared_list.jsp"%></div>
+				
+				<div role="tabpanel" class="tab-pane <s:property value="%{#currentActiveTab=='shared'?'active':''}" />" id="shared"><%@include
+						file="_qstatement_shared_list.jsp"%>
+						</div>
+						
+				<bsp:pager url="/qstatement!list.action" formId="shareForm"></bsp:pager>
+				
+				
+				
 			</div>
+			</form>
 		</div>
 	</div>
 </body>
 </html>
 <script type="text/javascript">
 $(function () {
+	
+	var currentActiveTab = $("#currentActiveTab").val();
+	if($.trim(currentActiveTab)!=''){
+		$("#"+currentActiveTab+"TabLink").tab("show");
+	}
+	
+	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+		  var cur = e.target.id;
+		  if(cur=='sharedTabLink'){
+			  cur = 'shared';
+		  }else{
+			  cur='self';
+		  }
+		  $("#currentActiveTab").val(cur);
+	})
+
+	
 	$("#shareBtn").click(function(){
 		 var ids = $(":checkbox[name='ids']:checked").val();
 		 if(ids==null||ids.length<1){

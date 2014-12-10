@@ -24,6 +24,8 @@ import cn.sp.spring.utils.ComponentFactory;
 public class Pager extends TagSupport  {
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	private String html;
+	private String formId;
+	
 	@Override
 	public int doEndTag() throws JspException {
 		render();
@@ -51,9 +53,8 @@ public class Pager extends TagSupport  {
 	protected void render(String path, int pageNo, Long totalPage) {
 		// 获取页面输出流，并输出字符串
 		Map<String,Object> map = new HashMap<String, Object>();
-		map.put("nextUrl", path + "?page.pageNo=" + (pageNo+1));
-		map.put("preUrl", path + "?page.pageNo=" + (pageNo-1));
-		
+		map.put("url", path);
+		map.put("pageNo", pageNo);
 		//按钮是否禁止使用
 		boolean nextDisabled = false,preDisabled = false;
 		if (pageNo<=1) {
@@ -64,7 +65,7 @@ public class Pager extends TagSupport  {
 			nextDisabled =true;
 		}
 		map.put("nextDisabled", nextDisabled);
-		
+		map.put("formId", getFormId()); 
 		FreeMarkerService freeMarkerService = (FreeMarkerService) ComponentFactory.getBean("freeMarkerService");
 		 html = freeMarkerService.populateTempalte("pager.ftl", map );
 		logger.debug("html:{}",html);
@@ -87,9 +88,12 @@ public class Pager extends TagSupport  {
 		return html;
 	}
 
+	public String getFormId() {
+		return formId;
+	}
 
-
-	
-	
+	public void setFormId(String formId) {
+		this.formId = formId;
+	}
 
 }

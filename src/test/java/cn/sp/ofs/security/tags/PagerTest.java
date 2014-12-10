@@ -22,6 +22,7 @@ public class PagerTest extends BaseTest{
 		final String url = "/qstatement!list.action";
 		pager.setUrl(url);
 		pager.render(url,1,2l);
+		pager.setFormId("shareForm");
 		String html = pager.getHtml();
 		logger.info("html:{}",html);
 		Assert.isTrue(html.contains("class=\"previous disabled\""));

@@ -3,6 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-jsptaglibrary_2_0.xsd"
     version="2.0">
+    <!-- 依赖于springsecurity和bootstrap -->
     <tlib-version>1.0</tlib-version>
 	<shortname>bsp</shortname>
 	<uri>sp-bsp</uri>
@@ -61,6 +62,11 @@
         <body-content>Scriptlet</body-content>
 		<attribute>
 			<name>url</name>
+			<required>true</required>
+			<fragment>true</fragment>
+		</attribute>
+		<attribute>
+			<name>formId</name>
 			<required>true</required>
 			<fragment>true</fragment>
 		</attribute>

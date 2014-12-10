@@ -1,7 +1,4 @@
-$.fn.getInputByName = function (name){
-	var str = "input[name='"+name+"']";
-	return this.filter(str);
-}
+
 
 /**
  * 
@@ -52,4 +49,19 @@ $.fn.texts = function (){
 		}
 	);
 	return vals;
+}
+
+/**
+ * 解析json为hidden数组
+ */
+$.parseHidden = function (json){
+	var hiddens = [];
+	for(var key in json){ 
+		var value = json[key];
+		var hidden=$("<input type='hidden' />");
+		hidden.attr("name='"+key+"'");
+		hidden.attr("value='"+value+"'");
+		hiddens.push(hidden);
+	}
+	return hiddens;
 }
