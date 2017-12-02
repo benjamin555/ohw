@@ -4,6 +4,7 @@ import java.io.File;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import mockit.NonStrictExpectations;
 
@@ -14,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.util.Assert;
 
-import cn.sp.ofs.excel.action.OfshelpAction;
 import cn.sp.ofs.excel.utils.DBConnectionPool;
 import cn.sp.ofs.security.SpringSecurityUtils;
 import cn.sp.ofs.security.entity.User;
@@ -97,6 +97,16 @@ public class OfshelpActionTest extends BaseTest {
 		};
 	}
 	
+	
+	@Test
+	public void testLuncenSearch() throws Exception {
+		action.setKeyword("博雅");
+		action.search();
+		List<String>row = action.getRow();
+		boolean r = (row.get(0).indexOf("博雅"))>0;
+		Assert.isTrue(r);
+		
+	}
 
 
 }

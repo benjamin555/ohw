@@ -38,6 +38,10 @@ import com.opensymphony.xwork2.ActionSupport;
 @Results({ @Result(name = "exception", location = "/common/error.jsp") })
 public class OfshelpAction extends ActionSupport{
 	
+	private List<String>row;
+	
+	private String keyword;
+	
 	private static int userNum = 0;
 	
 	private Logger logger = LoggerFactory.getLogger(getClass());
@@ -183,6 +187,34 @@ public class OfshelpAction extends ActionSupport{
 	public void setDebug(boolean debug) {
 		this.debug = debug;
 	}
+
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+
+	public String search() {
+		
+		return null;
+	}
+
+
+	public List<String> getRow() {
+		return row;
+	}
+
+
+	public void setRow(List<String> row) {
+		this.row = row;
+	}
+
+
+	public String getKeyword() {
+		return keyword;
+	}
+	
+	
 	
 	
 
