@@ -25,6 +25,16 @@
 	src="<%=basePath%>js/jQuery-File-Upload/jquery.iframe-transport.js"></script>
 <script src="<%=basePath%>js/jQuery-File-Upload/jquery.fileupload.js"></script>
 <script src="<%=basePath%>js/jquery.tmpl.min.js"></script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?4fb6ec26b4b57cd585ef74047036eacb";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
 </head>
 <body>
 	<%@include file="/common/fixed-nav.jsp"%>
