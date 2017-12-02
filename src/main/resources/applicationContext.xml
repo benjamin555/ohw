@@ -97,9 +97,5 @@
 		</property>
 	</bean>
 	
-	<bean id="indexManager" class="com.kpoda.excel.IndexManager">
-	
-	</bean>
-	
 	
 </beans>

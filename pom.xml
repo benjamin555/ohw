@@ -16,6 +16,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
+		<tomcat.version>2.2</tomcat.version>
+		<webserver.port>8181</webserver.port>
 	</properties>
 
 	<repositories>
@@ -107,6 +109,7 @@
 	</dependencies>
 	<build>
 		<finalName>ohw</finalName>
+		<outputDirectory>${project.basedir}/src/main/webapp/WEB-INF/classes/</outputDirectory>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -119,10 +122,16 @@
 				</configuration>
 			</plugin>
 			
+			<!-- tomcat7插件 -->
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.0-beta-1</version>
+				<version>${tomcat.version}</version> 
+				<configuration>
+					<port>${webserver.port}</port>
+					<path>/${project.artifactId}</path>
+					<uriEncoding>${project.build.sourceEncoding}</uriEncoding>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
